@@ -1,9 +1,7 @@
 import ast
 from IPython.external.qt_loaders import loaded_api
 from IPython.lib.inputhook import inputhook_manager
-import IPython
 import asyncio
-import asyncio.base_events
 
 
 class RewriteYieldFrom(ast.NodeTransformer):
@@ -72,8 +70,3 @@ def load_ipython_extension(ip, set_loop=True):
     ip.user_global_ns["@"] = yield_from
     if set_loop:
         set_event_loop()
-
-
-if __name__ == "__main__":
-    ip = IPython.get_ipython()
-    load_ipython_extension(ip)
