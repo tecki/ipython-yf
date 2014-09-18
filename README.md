@@ -26,6 +26,7 @@ command line. To give a simple example:
     In [4]: yield from f()
      #[wait three seconds]
     done
+    Out[4]: 'returned'
     In [5]: async(f())
     Out[5]: Task(<f>)<PENDING>
     In [6]: #[wait three seconds, or type other commands] done
@@ -60,7 +61,7 @@ To give an example, continuing on the example above:
    In [9]: print("hello world")
    hello world
    #[three seconds after In[8]
-   Out[8]: "returned"
+   Out[8]: 'returned'
 ```
 
 Unfortunately, the output is put just anywhere on the screen, there
