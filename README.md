@@ -17,16 +17,17 @@ This IPython extension allows to use the `yield from` keyword on the
 command line. To give a simple example:
 
 ```python
-    >>> %load_ext yf
-    >>> from asyncio import sleep, async
-    >>> def f():
-    ...     yield from sleep(3)
-    ...     print("done")
-    >>> yield from f()
+    In [1]: %load_ext yf
+    In [2]: from asyncio import sleep, async
+    In [3]: def f():
+       ...:    yield from sleep(3)
+       ...:    print("done")
+    In [4]: yield from f()
      #[wait three seconds]
     done
-    >>> async(f())
-    >>> #[wait three seconds, or type other commands] done
+    In [5]: async(f())
+    Out[5]: Task(<f>)<PENDING>
+    In [6]: #[wait three seconds, or type other commands] done
 ```
 
 This way you will be able to test or otherwise run your asyncio code
