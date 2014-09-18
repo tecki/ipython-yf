@@ -22,6 +22,7 @@ command line. To give a simple example:
     In [3]: def f():
        ...:    yield from sleep(3)
        ...:    print("done")
+       ...:    return "returned"
     In [4]: yield from f()
      #[wait three seconds]
     done
@@ -42,6 +43,29 @@ This means, you can run `ipython3 --pylab`, plot some graphs, and
 while your asyncio coroutines are running, the plots still stay responsive.
 Try it! For example with the above code: during the waits mentioned
 there you can still move the plots around in your plotting window.
+
+Showing results of futures
+--------------------------
+
+Once you have started a task in the background with `async`, you might
+be interested when and what it will return. This is what the other 
+extension in this package is for: once a task (to be precise: a future)
+has finished, its result will be shown, except if it is `None`.
+
+To give an example, continuing on the example above:
+```python
+   In [7]: %load_ext printfuture
+   In [8]: async(f())
+   Out[8]: Task(<f>)<PENDING>
+   In [9]: print("hello world")
+   hello world
+   #[three seconds after In[8]
+   Out[8]: "returned"
+```
+
+Unfortunately, the output is put just anywhere on the screen, there
+is room for improvement here. This is also why this extension is not
+(yet) merged with the `yf` extension.
 
 Installation
 ------------
