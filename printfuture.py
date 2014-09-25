@@ -4,11 +4,20 @@ from functools import partial
 
 def load_ipython_extension(ip):
     class Hook(ip.displayhook_class):
+        def __init__(self, *args, **kwargs):
+            super().__init__(*args, **kwargs)
+            self.delayed = [ ]
+
         def delayedprint(self, future):
+            self.delayed.append((future.number, future.result()))
+
+        def pre_prompt(self, ip):
             ec = self.shell.execution_count
-            self.shell.execution_count = future.number
             try:
-                sys.displayhook(future.result())
+                for num, result in self.delayed:
+                    self.shell.execution_count = num
+                    sys.displayhook(result)
+                self.delayed = [ ]
             finally:
                 self.shell.execution_count = ec
 
@@ -20,3 +29,4 @@ def load_ipython_extension(ip):
 
     ip.displayhook_class = Hook
     ip.init_displayhook()
+    ip.set_hook("pre_prompt_hook", ip.displayhook.pre_prompt)
