@@ -1,3 +1,7 @@
+# these asyncio extensions to IPython are written by Martin Teichmann
+# Copyright (c) 2014 European XFEL GmbH
+# Distributed under the GNU GPLv2, see LICENSE.txt
+
 import ast
 from IPython.external.qt_loaders import loaded_api
 from IPython.lib.inputhook import inputhook_manager
