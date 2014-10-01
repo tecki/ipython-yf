@@ -1,6 +1,6 @@
 # these IPython extensions are written by Martin Teichmann
 # Copyright (c) 2014 European XFEL GmbH
-# Distributed under the GNU GPLv2, see LICENSE.txt
+# Distributed under the terms of the Modified BSD License.
 
 import sys
 from asyncio import Future
